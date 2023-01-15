@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
 }
 
 html,
@@ -13,8 +14,7 @@ body,
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-color: #f0f0f0;
 }
 
 .wrapper {
@@ -30,6 +30,12 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+.bg-title {
+  font-size: 3rem;
+  margin: 0;
+  color: #d1d1d1;
+}
+
 .card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
@@ -42,13 +48,13 @@ header {
   padding: 30px 40px;
 }
 
-.card-header::after {
+/* .card-header::after {
   content: " ";
   display: block;
   width: 100%;
   background: #e7e9eb;
   height: 2px;
-}
+} */
 
 .card-body {
   min-height: 100px;
@@ -58,24 +64,25 @@ header {
   text-align: center;
 }
 
-.card-footer::before {
+/* .card-footer::before {
   content: " ";
   display: block;
   width: 100%;
   background: #e7e9eb;
   height: 2px;
-}
+} */
 
-.card-footer::after {
+/* .card-footer::after {
+  background-color: ;
   content: " ";
   display: block;
   clear: both;
-}
+} */
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
-  border-radius: 25px;
+  background-color: rgb(202, 32, 10);
+  border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
   color: hsl(0, 0%, 100%);
@@ -86,6 +93,15 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(204, 56, 56);
+}
+
+.btn:active {
+  background-color: rgb(43, 79, 80);
+  transform: scale(0.97);
 }
 
 button[disabled] {
@@ -112,7 +128,7 @@ button[disabled] {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
+  box-shadow: inset 0px 0px 10px 1px rgba(95, 95, 95, 0.3);
   border-radius: 6px;
   resize: none;
   overflow: hidden;
