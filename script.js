@@ -88,6 +88,7 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
@@ -95,7 +96,24 @@ function getPasswordOptions() {}
 function getRandom(arr) {}
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+  const UserPassLength = prompt(
+    "\nPlease enter the number of characters you'd like in your password? \n(Must be between 10-64 characters)\n"
+  );
+  const UserLowerC = confirm(
+    "\nWould you like your password to include Lowercase?\n\n OK for 'Yes'\n Cancel for 'NO'"
+  );
+  const UserUpperC = confirm(
+    "\nWould you like your password to include Uppercase?\n\n OK for 'Yes'\n Cancel for 'NO'"
+  );
+  const UserNumbers = confirm(
+    "\nWould you like your password to include Numbers?\n\n OK for 'Yes'\n Cancel for 'NO'"
+  );
+  const UserSpecialC = confirm(
+    "\nFinally, Would you like your password to include Special Characters?\n\n OK for 'Yes'\n Cancel for 'NO'"
+  );
+  return 'Your New Password is here!' 
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");

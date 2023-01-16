@@ -100,7 +100,7 @@ header {
 }
 
 .btn:active {
-  background-color: rgb(43, 79, 80);
+  background-color: rgb(22, 115, 190);
   transform: scale(0.97);
 }
 
