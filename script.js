@@ -88,31 +88,76 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+let password = "";
+// let includeLowerChar = false;
+// let includeUpperChar = false;
+// let includeNumbers = false;
+// let includeSpecialChar = false;
 
-// Function to prompt user for password options
-function getPasswordOptions() {}
+// ============= Function to prompt user for password options ============== //
+function getPasswordOptions() {
+  // Using a while loop to determine if user input is equal to specified range
+  while (true) {
+    let passwordLength = prompt(
+      "\nPlease enter the number of characters you'd like in your password? \n(Must be between 10-64 characters)\n"
+    );
 
-// Function for getting a random element from an array
-function getRandom(arr) {}
+    if (passwordLength >= 10 && passwordLength <= 64) {
+      alert("\nGreat Choice!" + "\nYour password will have " + passwordLength + " characters");
+      break;
+    } else {
+      alert("\nOpps! The value you entered is incorrect\n" + "Click 'OK' to try again");
+    }
+  }
+// ----- Using while loop to check if user has selected at least one character type --------/
+  while (true) {
+    let includeLowerChar = confirm(
+      "\nWould you like your password to include L͟o͟w͟e͟r͟c͟a͟s͟e͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+    );
+    let includeUpperChar = confirm(
+      "\nWould you like your password to include U͟p͟p͟e͟r͟c͟a͟s͟e͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+    );
+    let includeNumbers = confirm(
+      "\nWould you like your password to include N͟u͟m͟b͟e͟r͟s͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+    );
+    let includeSpecialChar = confirm(
+      "\nFinally, Would you like your password to include S͟p͟e͟c͟i͟a͟l͟ C͟h͟a͟r͟a͟c͟t͟e͟r͟s͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+    );
+    
+    if (includeLowerChar || includeUpperChar || includeNumbers || includeSpecialChar) {
+      break;
+    }
+    else {
+      alert("You must select at least one Character type");
+    }
+  } 
+
+}
+
+// (!includeLowerChar && !includeUpperChar && !includeNumbers && !includeSpecialChar) {
+//       alert("You must select at least one Character type");
+
+// if (!includeLowerChar && !includeUpperChar && !includeNumbers && !includeSpecialChar) {
+//   alert("You must select at least one Character type");
+// }
+
+//pass length = 23
+//lower case = true
+//upper case = false
+//special = false
+//number = false
+
+// ========= Function for getting a random element from an array ========= //
+function getRandom(arr) {
+  let n = PassLength;
+  let randomElement = arr.sort(() => Math.random() - Math.random()).slice(0, n);
+  return randomElement;
+}
 
 // Function to generate password with user input
 function generatePassword() {
-  const UserPassLength = prompt(
-    "\nPlease enter the number of characters you'd like in your password? \n(Must be between 10-64 characters)\n"
-  );
-  const UserLowerC = confirm(
-    "\nWould you like your password to include Lowercase?\n\n OK for 'Yes'\n Cancel for 'NO'"
-  );
-  const UserUpperC = confirm(
-    "\nWould you like your password to include Uppercase?\n\n OK for 'Yes'\n Cancel for 'NO'"
-  );
-  const UserNumbers = confirm(
-    "\nWould you like your password to include Numbers?\n\n OK for 'Yes'\n Cancel for 'NO'"
-  );
-  const UserSpecialC = confirm(
-    "\nFinally, Would you like your password to include Special Characters?\n\n OK for 'Yes'\n Cancel for 'NO'"
-  );
-  return 'Your New Password is here!' 
+  getPasswordOptions();
+  let password = "";
 }
 
 // Get references to the #generate element
