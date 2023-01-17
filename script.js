@@ -88,15 +88,14 @@ var upperCasedCharacters = [
   "Z",
 ];
 
-let password = "";
-// let includeLowerChar = false;
-// let includeUpperChar = false;
-// let includeNumbers = false;
-// let includeSpecialChar = false;
+// let includeLowerChar = true;
+// let includeUpperChar = true;
+// let includeNumbers = true;
+// let includeSpecialChar = true;
 
 // ============= Function to prompt user for password options ============== //
 function getPasswordOptions() {
-  // Using a while loop to determine if user input is equal to specified range
+  // ----- Using a while loop to determine if user input is equal to specified range ------ //
   while (true) {
     let passwordLength = prompt(
       "\nPlease enter the number of characters you'd like in your password? \n(Must be between 10-64 characters)\n"
@@ -109,7 +108,7 @@ function getPasswordOptions() {
       alert("\nOpps! The value you entered is incorrect\n" + "Click 'OK' to try again");
     }
   }
-// ----- Using while loop to check if user has selected at least one character type --------/
+  // ====== Using while loop to check if user has selected at least one character type =========/
   while (true) {
     let includeLowerChar = confirm(
       "\nWould you like your password to include L͟o͟w͟e͟r͟c͟a͟s͟e͟?\n\n OK for 'YES'\n Cancel for 'NO'"
@@ -123,17 +122,33 @@ function getPasswordOptions() {
     let includeSpecialChar = confirm(
       "\nFinally, Would you like your password to include S͟p͟e͟c͟i͟a͟l͟ C͟h͟a͟r͟a͟c͟t͟e͟r͟s͟?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
-    
+    // ======= Checks if the user inputs are true, if so it will put them into passwordChracters array =======//
+    if (includeLowerChar) {
+      passwordCharacters.push(lowerCasedCharacters);
+    }
+    if (includeUpperChar) {
+      passwordCharacters.push(upperCasedCharacters);
+    }
+    if (includeNumbers) {
+      passwordCharacters.push(numericCharacters);
+    }
+    if (includeSpecialChar) {
+      passwordCharacters.push(specialCharacters);
+    }
+
+    let allCharacters = [].concat.apply([], passwordCharacters);
+
+    let password = "";
+
     if (includeLowerChar || includeUpperChar || includeNumbers || includeSpecialChar) {
       break;
+    } else {
+      alert("\nYou must select at least one Character type" + "\nClick 'OK' to try again");
     }
-    else {
-      alert("You must select at least one Character type");
-    }
-  } 
-
+  }
 }
 
+// ======== testing codes ======= //
 // (!includeLowerChar && !includeUpperChar && !includeNumbers && !includeSpecialChar) {
 //       alert("You must select at least one Character type");
 
@@ -149,21 +164,28 @@ function getPasswordOptions() {
 
 // ========= Function for getting a random element from an array ========= //
 function getRandom(arr) {
-  let n = PassLength;
-  let randomElement = arr.sort(() => Math.random() - Math.random()).slice(0, n);
-  return randomElement;
+  return arr[Math.floor(Math.random() * arr.length)];
 }
+
+// ======== testing codes ======= //
+// let n = PassLength;
+// let randomElement = arr.sort(() => Math.random() - Math.random()).slice(0, n);
+// return randomElement;
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
   let password = "";
+  getPasswordOptions();
+  for (let i = 0; i < passwordLength; i++) {
+    passwordOption = passwordOption.flat();
+    password += getRandom(passwordOption);
+  }
 }
 
-// Get references to the #generate element
+// ============ Get references to the #generate element ============ //
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// ============ Write password to the #password input ============= //
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -171,5 +193,5 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// =========== Add event listener to generate button ============= //
 generateBtn.addEventListener("click", writePassword);
