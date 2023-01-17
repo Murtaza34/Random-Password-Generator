@@ -94,7 +94,8 @@ var upperCasedCharacters = [
 // let includeSpecialChar = true;
 
 // ============= Function to prompt user for password options ============== //
-function getPasswordOptions() {
+
+function generatePassword() {
   // ----- Using a while loop to determine if user input is equal to specified range ------ //
   while (true) {
     let passwordLength = prompt(
@@ -108,78 +109,50 @@ function getPasswordOptions() {
       alert("\nOpps! The value you entered is incorrect\n" + "Click 'OK' to try again");
     }
   }
+  
+  let selectedChars = [];
+  
   // ====== Using while loop to check if user has selected at least one character type =========/
   while (true) {
     let includeLowerChar = confirm(
-      "\nWould you like your password to include L͟o͟w͟e͟r͟c͟a͟s͟e͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+      "\nWould you like your password to include Lowercase?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
     let includeUpperChar = confirm(
-      "\nWould you like your password to include U͟p͟p͟e͟r͟c͟a͟s͟e͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+      "\nWould you like your password to include Uppercase?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
     let includeNumbers = confirm(
-      "\nWould you like your password to include N͟u͟m͟b͟e͟r͟s͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+      "\nWould you like your password to include Numbers?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
     let includeSpecialChar = confirm(
-      "\nFinally, Would you like your password to include S͟p͟e͟c͟i͟a͟l͟ C͟h͟a͟r͟a͟c͟t͟e͟r͟s͟?\n\n OK for 'YES'\n Cancel for 'NO'"
+      "\nFinally, Would you like your password to include Special Characters?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
-    // ======= Checks if the user inputs are true, if so it will put them into passwordChracters array =======//
+
     if (includeLowerChar) {
-      passwordCharacters.push(lowerCasedCharacters);
+      selectedChars = selectedChars.concat(lowerCasedCharacters);
     }
     if (includeUpperChar) {
-      passwordCharacters.push(upperCasedCharacters);
+      selectedChars = selectedChars.concat(upperCasedCharacters);
     }
     if (includeNumbers) {
-      passwordCharacters.push(numericCharacters);
+      selectedChars = selectedChars.concat(numericCharacters);
     }
     if (includeSpecialChar) {
-      passwordCharacters.push(specialCharacters);
+      selectedChars = selectedChars.concat(specialCharacters);
     }
 
-    let allCharacters = [].concat.apply([], passwordCharacters);
-
-    let password = "";
-
-    if (includeLowerChar || includeUpperChar || includeNumbers || includeSpecialChar) {
+    if (selectedChars.length > 0) {
       break;
     } else {
       alert("\nYou must select at least one Character type" + "\nClick 'OK' to try again");
     }
   }
-}
 
-// ======== testing codes ======= //
-// (!includeLowerChar && !includeUpperChar && !includeNumbers && !includeSpecialChar) {
-//       alert("You must select at least one Character type");
-
-// if (!includeLowerChar && !includeUpperChar && !includeNumbers && !includeSpecialChar) {
-//   alert("You must select at least one Character type");
-// }
-
-//pass length = 23
-//lower case = true
-//upper case = false
-//special = false
-//number = false
-
-// ========= Function for getting a random element from an array ========= //
-function getRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-// ======== testing codes ======= //
-// let n = PassLength;
-// let randomElement = arr.sort(() => Math.random() - Math.random()).slice(0, n);
-// return randomElement;
-
-// Function to generate password with user input
-function generatePassword() {
   let password = "";
-  getPasswordOptions();
+
   for (let i = 0; i < passwordLength; i++) {
-    passwordOption = passwordOption.flat();
-    password += getRandom(passwordOption);
+    password += getRandom(selectedChars);
   }
+  return password;
 }
 
 // ============ Get references to the #generate element ============ //
