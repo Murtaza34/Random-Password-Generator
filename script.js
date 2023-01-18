@@ -88,17 +88,19 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+//
 // let includeLowerChar = true;
 // let includeUpperChar = true;
 // let includeNumbers = true;
 // let includeSpecialChar = true;
 
-// ============= Function to prompt user for password options ============== //
+// ============== Function to prompt user for password options ===================== //
 
 function generatePassword() {
   // ----- Using a while loop to determine if user input is equal to specified range ------ //
+  let passwordLength;
   while (true) {
-    let passwordLength = prompt(
+    passwordLength = prompt(
       "\nPlease enter the number of characters you'd like in your password? \n(Must be between 10-64 characters)\n"
     );
 
@@ -109,10 +111,12 @@ function generatePassword() {
       alert("\nOpps! The value you entered is incorrect\n" + "Click 'OK' to try again");
     }
   }
-  
+
+  // --- This takes whats stored in the variable passwordLength and converts it from a string to a number --- //
+  let userInputNum = parseInt(passwordLength);
   let selectedChars = [];
-  
-  // ====== Using while loop to check if user has selected at least one character type =========/
+
+  // ----- Using while loop to check if user has selected at least one character type ------ //
   while (true) {
     let includeLowerChar = confirm(
       "\nWould you like your password to include Lowercase?\n\n OK for 'YES'\n Cancel for 'NO'"
@@ -127,6 +131,7 @@ function generatePassword() {
       "\nFinally, Would you like your password to include Special Characters?\n\n OK for 'YES'\n Cancel for 'NO'"
     );
 
+    // ---- checking if certain variables are set to true. If they are, it concatenates the corresponding character set (e.g. lowerCasedCharacters) to the selectedChars variable ---- //
     if (includeLowerChar) {
       selectedChars = selectedChars.concat(lowerCasedCharacters);
     }
@@ -147,18 +152,28 @@ function generatePassword() {
     }
   }
 
-  let password = "";
-
-  for (let i = 0; i < passwordLength; i++) {
-    password += getRandom(selectedChars);
+  //------ created an empty array and then using a for loop to iterate through the elements of array 'selectedChars' ----------// 
+  // debugger;
+  let res = [];
+  for (let i = 0; i < selectedChars.length; i++) {
+    // pushing the new characters from selectedCharsArray and getting random indexes from the randomChar function
+    res.push(randomChar(selectedChars));
   }
+  // ---- taking a slice of the array "res" starting at the first element (index 0) and ending at the userInputNum element. This slice is returned as a new array. Then using .join("") to join all elements into one string without any separators ----- //
+  const password = res.slice(0, userInputNum).join("");
+
   return password;
 }
 
-// ============ Get references to the #generate element ============ //
+// ------- Function to generate a random number ------- //
+function randomChar(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// ------ Get references to the #generate element ----------//
 var generateBtn = document.querySelector("#generate");
 
-// ============ Write password to the #password input ============= //
+// ------- Write password to the #password input --------- //
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -166,5 +181,5 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// =========== Add event listener to generate button ============= //
+// ----------- Add event listener to generate button ---------- //
 generateBtn.addEventListener("click", writePassword);
