@@ -21,9 +21,9 @@ Once all prompts are answered, the password should be generated and displayed in
 
 ### View Project / Code
 
-To view project, visit [GitHub page](https://github.com/Murtaza34/Random-Password-Generator) for this project. 
+To view project, visit [GitHub page](https://murtaza34.github.io/Random-Password-Generator/) for this project. 
 
-To view code, visit [GitHub Repo](https://murtaza34.github.io/Random-Password-Generator/). 
+To view code, visit [GitHub Repo](https://github.com/Murtaza34/Random-Password-Generator). 
 
 ## Preview
 
